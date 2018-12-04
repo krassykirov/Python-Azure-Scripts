@@ -1,0 +1,49 @@
+import adal,requests
+from flask import Flask, render_template
+import jinja2
+
+app = Flask(__name__)
+app.debug = True
+
+@app.route('/')
+def get_token():
+
+    url = 'https://login.microsoftonline.com/xxxxxx.onmicrosoft.com/oauth2/v2.0/token'
+
+    data = {
+        'grant_type': 'client_credentials',
+        'client_id': "xxxxxxxxxxxxxxxxxxxxxxx",
+        'scope': 'https://graph.microsoft.com/.default',
+        'client_secret': "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    }
+
+    headers = {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Accept': 'application/json'
+      }
+
+    r = requests.post(url, data=data)
+    token = r.json().get('access_token')
+
+    headers = {
+        'Content-Type' : 'application\json',
+        'Authorization': 'Bearer {}'.format(token)
+    }
+
+    user_endpoint = 'https://graph.microsoft.com/v1.0/users'
+    r = requests.get(user_endpoint, headers=headers)
+    result = r.json()
+    print(result)
+    users = []
+    for k, v in result.items():
+        users.append(k)
+        users.append(v)
+
+    user_values = users[3]
+
+    return render_template('index.html', user_values=user_values)
+
+
+
+if __name__ == '__main__':
+    app.run()
