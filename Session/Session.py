@@ -4,6 +4,8 @@ import jinja2, adal, requests
 app = Flask(__name__)
 app.debug = True
 
+SESSION = requests.Session()
+
 @app.route('/')
 def homepage():
 
@@ -14,13 +16,12 @@ def submit_data():
     try:
         if request.method == 'POST':
             endpoint = request.form.get('endpoint')
-        SESSION = requests.Session()
-        url = 'https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token'
+        url = 'https://login.microsoftonline.com/sg77.onmicrosoft.com/oauth2/v2.0/token'
         data = {
             'grant_type': 'client_credentials',
-            'client_id': "xxxxxxxxxxxxx",
+            'client_id': "9a99e41c-b2d7-40bf-bd39-7531b9d04cdf",
             'scope': 'https://graph.microsoft.com/.default',
-            'client_secret': "x",
+            'client_secret': "G3H4FBAKm6ORNJJi8HHid9nD5tsBsTkGA8/uOb+DcVY=",
         }
 
         resp = SESSION.post(url, data=data)
