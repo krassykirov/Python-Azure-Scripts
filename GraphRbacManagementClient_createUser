@@ -3,8 +3,8 @@ from azure.common.credentials import ServicePrincipalCredentials
 from azure.graphrbac.models import UserCreateParameters, PasswordProfile
 
 credentials = ServicePrincipalCredentials(
-    client_id="c75fb12a-ca4c-40c9-82f0-4a8cc44c9eb1",
-    secret="OeKvPI44/i/l3JcxJmONbbqq5nCw58R1cISpKxwWc2U=",
+    client_id="clientAPPID",
+    secret="yourSecret",
     resource="https://graph.windows.net",
     tenant = 'xxxxx.onmicrosoft.com'   
 )
