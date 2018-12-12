@@ -16,12 +16,12 @@ def submit_data():
     try:
         if request.method == 'POST':
             endpoint = request.form.get('endpoint')
-        url = 'https://login.microsoftonline.com/sg77.onmicrosoft.com/oauth2/v2.0/token'
+        url = 'https://login.microsoftonline.com/{TENANT}/oauth2/v2.0/token'
         data = {
             'grant_type': 'client_credentials',
-            'client_id': "9a99e41c-b2d7-40bf-bd39-7531b9d04cdf",
+            'client_id': "clientAPPID",
             'scope': 'https://graph.microsoft.com/.default',
-            'client_secret': "G3H4FBAKm6ORNJJi8HHid9nD5tsBsTkGA8/uOb+DcVY=",
+            'client_secret': "Your_UltraSecret",
         }
 
         resp = SESSION.post(url, data=data)
