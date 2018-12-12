@@ -1,0 +1,14 @@
+<!doctype html>
+<html>
+   <body>
+
+<ul>
+{% for user in user_values -%}
+
+<div><p><b>{{user['userPrincipalName'] }}</b> </p> Details:{{ user}}</div>
+
+{%- endfor %}
+</ul>
+
+   </body>
+</html>
