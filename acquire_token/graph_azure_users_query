@@ -10,7 +10,7 @@ app.debug = True
 @app.route('/')
 def get_token():
 
-    url = 'https://login.microsoftonline.com/sg77.onmicrosoft.com/oauth2/v2.0/token'
+    url = 'https://login.microsoftonline.com/{TENANT}/oauth2/v2.0/token'
 
     data = {
         'grant_type': 'client_credentials',
