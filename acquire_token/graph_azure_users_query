@@ -10,13 +10,13 @@ app.debug = True
 @app.route('/')
 def get_token():
 
-    url = 'https://login.microsoftonline.com/xxxxxx.onmicrosoft.com/oauth2/v2.0/token'
+    url = 'https://login.microsoftonline.com/sg77.onmicrosoft.com/oauth2/v2.0/token'
 
     data = {
         'grant_type': 'client_credentials',
-        'client_id': "xxxxxxxxxxxxxxxxxxxxxxx",
+        'client_id': "yourAPPclientID",
         'scope': 'https://graph.microsoft.com/.default',
-        'client_secret': "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        'client_secret': "yourMegaSecret",
     }
 
     headers = {
