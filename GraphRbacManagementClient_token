@@ -2,7 +2,6 @@
 
 import adal,requests
 from azure.common.credentials import ServicePrincipalCredentials
-from azure.graphrbac.models import UserCreateParameters, PasswordProfile
 from msrestazure.azure_active_directory import AdalAuthentication
 from azure.graphrbac import GraphRbacManagementClient
 from azure.graphrbac.operations.domains_operations import DomainsOperations
