@@ -37,7 +37,6 @@ def login():
         auth_state = str(uuid.uuid4())
         SESSION.auth_state = auth_state
         prompt_behavior = 'select_account' #prompt_behavior = 'login'
-        #Use the urllib.parse.urlencode() function to convert such dictionaries into query strings
         params = urllib.parse.urlencode({'response_type': 'code id_token',
                                          'client_id': CLIENT_ID,
                                          'redirect_uri': REDIRECT_URI,
@@ -54,8 +53,6 @@ def login():
 @APP.route('/login/authorized',methods=['GET', 'POST'])
 def authorized():
             #Handler for the application's Redirect Uri. Gets the authorization code from the flask response form dictionary.
-            #print('request.form.get_id_token',id_token) | print('flask.session.id_token:', flask.session['id_token'] )
-            flask.session.clear()
             code = request.form.get('code')
             id_token = request.form.get('id_token')
             flask.session['id_token'] = id_token
@@ -88,7 +85,7 @@ def authorized():
 @APP.route('/graphcall')
 def graphcall():
         """Confirm user authentication by calling Graph and displaying some data."""
-        #session contains the id_token+access_token | print(flask.session)
+        #session contains the id_token+access_token 
         if 'id_token' not in flask.session or 'access_token' not in flask.session:
             SESSION.auth_state = None
             flask.session.clear()
