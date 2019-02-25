@@ -103,6 +103,23 @@ def graphcall():
                                      access_token=flask.session['access_token'])
 
 
+@APP.route('/refresh')
+def refresh_token():
+    # Get a refresh_token
+    data = urllib.parse.urlencode({  'client_id': CLIENT_ID,
+                                     'redirect_uri': REDIRECT_URI,
+                                     'refresh_token' : flask.session['refreshToken'],
+                                     'scope': 'https://graph.microsoft.com/User.Read.All',
+                                     'grant_type': 'refresh_token',
+                                     'client_secret':CLIENT_SECRET
+                                })
+
+    r = requests.post(TENANT, data)
+    data = r.json()
+    token = data['access_token']
+    return token
+
+
 if __name__ == '__main__':
         APP.run()
         
