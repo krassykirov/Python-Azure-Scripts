@@ -2,9 +2,9 @@ from azure.keyvault import KeyVaultClient, KeyVaultAuthentication
 from azure.common.credentials import ServicePrincipalCredentials
 
 credentials = ServicePrincipalCredentials(
-        client_id = '861ce79d-c4ac-439a-b8fe-e9804214c1a3',
-        secret = 'L?gJE*va30lz:f44rLDodP/Pz?uoTn@1',
-        tenant = 'microsoft.onmicrosoft.com',
+        client_id = 'YourClientAdd',
+        secret = 'YourSecret',
+        tenant = 'domain.onmicrosoft.com',
     )
 VAULT_URL = 'https://uaekeyvault.vault.azure.net'
 SECRET_ID = 'mysecret'
