@@ -1,6 +1,6 @@
 import requests,json
 
-token_endpoint = "https://login.microsoftonline.com/microsoft.onmicrosoft.com/oauth2/v2.0/token"
+token_endpoint = "https://login.microsoftonline.com/yourdomain.onmicrosoft.com/oauth2/v2.0/token"
 
 data = {
 'grant_type': 'client_credentials',
