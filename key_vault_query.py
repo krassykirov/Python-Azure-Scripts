@@ -6,7 +6,7 @@ credentials = ServicePrincipalCredentials(
         secret = 'YourSecret',
         tenant = 'domain.onmicrosoft.com',
     )
-VAULT_URL = 'https://uaekeyvault.vault.azure.net'
+VAULT_URL = 'https://YourKeyvaultNAME.vault.azure.net'
 SECRET_ID = 'mysecret'
 client = KeyVaultClient(credentials)
 # VAULT_URL must be in the format 'https://<vaultname>.vault.azure.net'
