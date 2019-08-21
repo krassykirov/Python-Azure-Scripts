@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/" method="POST">
+	<label><b> Graph Query : </b></label>
+	<input type="text" name="endpoint" size="50" value ={{request.form.endpoint}}>
+	<button type="submit" onclick="submit_data()"> Submit </button>
+</form>
+<p><b> Exemples => </b>  https://graph.microsoft.com/v1.0/users or https://graph.microsoft.com/beta/serviceprincipals  </p>
+<p> <b> Access Token : </b>  {{ token }}</p>
+<h2><a href="https://jwt.io/" target="_blank"><b>Verify Token in jwt.io</b></a></h2>
+
+<pre><p><b>GRAPH Query :</b>  {{endpoint }}</p></pre>
+<pre><p><b>GRAPH Response : </b></p></pre>
+<textarea rows="50" cols="210"> {{ graphdata }}</textarea>
+
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+#GraphRbacManagementClient
+
+import adal,requests
+from azure.common.credentials import ServicePrincipalCredentials
+from msrestazure.azure_active_directory import AdalAuthentication
+from azure.graphrbac import GraphRbacManagementClient
+from azure.graphrbac.operations.domains_operations import DomainsOperations
+
+credentials = ServicePrincipalCredentials(
+    client_id="xxxxxxxxxxxxx",
+    secret="xxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    resource="https://graph.windows.net",
+    tenant = 'xxxxx.onmicrosoft.com'
+)
+tenant_id = 'xxxxxxxxx'
+
+graphrbac_client = GraphRbacManagementClient(
+    credentials,
+    tenant_id
+)
+
+token = credentials.token['access_token']
+
+users = graphrbac_client.users.list()
+for user in users:
+    print(user.user_principal_name)
+
+domains = graphrbac_client.domains.list()
+for domain in domains:
+    print(domain.name)
+
+groups = graphrbac_client.groups.list()
+for group in groups:
+    print(group.display_name)
+
+members = graphrbac_client.groups.get_group_members('44d32c6b-b4ab-4b21-8c74-cc2fc42a3eef')
+for member in members:
+    print(member.user_principal_name)
