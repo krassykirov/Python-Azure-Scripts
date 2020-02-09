@@ -1,0 +1,13 @@
+import requests,os
+
+msi_endpoint = os.environ["MSI_ENDPOINT"]
+msi_secret = os.environ["MSI_SECRET"]
+token_auth_uri = f"{msi_endpoint}?resource=https://vault.azure.net&api-version=2017-09-01"
+head_msi = {'Secret': msi_secret}
+resp = requests.get(token_auth_uri, headers=head_msi)
+access_token = resp.json()['access_token']
+# replace with your KeyVault and your Secret Name to get
+endpoint = "https://<YourKeyVault>.vault.azure.net/secrets/<your_secret>?api-version=2016-10-01"
+headers = {"Authorization": 'Bearer {}'.format(access_token)}
+response = requests.get(endpoint, headers=headers).json()
+print(response)
