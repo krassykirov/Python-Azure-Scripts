@@ -27,7 +27,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             
 ################################################
 ''' Calling the Azure Function with Graph Query
-# https://graph.microsoft.com/v1.0/users/{users@user.onmicrosoft.com}/messages?$select=sender,subject
+# https://graph.microsoft.com/v1.0/users/{some_user}@{tenant}.onmicrosoft.com/messages?$select=sender,subject
 graph_query = 'https://graph.microsoft.com/v1.0/users'
 func_url = 'https://{function_name}.azurewebsites.net/api/get_msgraph_data'
 data = {'endpoint': graph_query}
