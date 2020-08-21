@@ -1,9 +1,14 @@
 import json,asyncio,time
 from aiohttp import ClientSession
 
+# Fetch User Emails:'Sender', 'EmailAddress', 'Subject','ReceivedDateTime'
+# tenant: change with your Azure Active Directory tenant id or domain
+# client_id: change with your Azure Active Directory Application Client ID
+# client_secret: change with your Azure Active Directory Application Secret
+
 async def get_o365_user_emails():
 
-    endpoint= 'https://graph.microsoft.com/v1.0/users/{username@tenant.onmicrosoft.com}/messages?$select=sender,subject,receivedDateTime'
+    endpoint= 'https://graph.microsoft.com/v1.0/users/UserName@TENANT.onmicrosoft.com/messages?$select=sender,subject,receivedDateTime'
     url = 'https://login.microsoftonline.com/{tenant}.onmicrosoft.com/oauth2/v2.0/token'
     data = {
         'grant_type': 'password',
