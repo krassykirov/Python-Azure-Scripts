@@ -1,0 +1,52 @@
+import json,asyncio,time
+from aiohttp import ClientSession
+
+async def get_o365_user_emails():
+
+    endpoint= 'https://graph.microsoft.com/v1.0/users/{username@tenant.onmicrosoft.com}/messages?$select=sender,subject,receivedDateTime'
+    url = 'https://login.microsoftonline.com/{tenant}.onmicrosoft.com/oauth2/v2.0/token'
+    data = {
+        'grant_type': 'password',
+        'client_id': 'AppID',
+        'scope': 'https://graph.microsoft.com/.default',
+        'client_secret': 'APPSuperSecretPassword',
+        'username': 'UserName@TENANT.onmicrosoft.com',
+        'password': 'UserSuperP@ssword'
+    }
+    async with ClientSession() as session:
+        resp = await session.post(url,data=data)
+        text = await resp.json()
+        token = text.get('access_token')
+        headers = {'Authorization': 'Bearer {}'.format(token)}
+        resp = await session.get(endpoint, headers=headers)
+        msg_response_data = await resp.json()
+        messages = []
+        for msg in msg_response_data['value']:
+            messages.append(msg['sender']['emailAddress']['address'])
+            messages.append(msg['subject'])
+            messages.append(msg['receivedDateTime'])
+
+        while '@odata.nextLink' in msg_response_data:
+            resp = await session.get(endpoint, headers=headers)
+            msg_response_data = await resp.json()
+            if '@odata.nextLink' in msg_response_data:
+                endpoint = msg_response_data['@odata.nextLink']
+                for msg in msg_response_data['value']:
+                    messages.append(msg['sender']['emailAddress'])
+                    messages.append(msg['subject'])
+                    messages.append(msg['receivedDateTime'])
+
+        for msg in messages:
+            print(msg)
+
+
+async def main():
+    s = time.perf_counter()
+    task2 = asyncio.create_task(get_o365_user_emails())
+    task_result2 = await task2
+    print(task_result2)
+    elapsed = time.perf_counter() - s
+    print(f"{__file__} executed in {elapsed:0.2f} seconds.")
+
+asyncio.run(main())
+
