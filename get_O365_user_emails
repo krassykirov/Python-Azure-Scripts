@@ -5,6 +5,7 @@ from aiohttp import ClientSession
 # tenant: change with your Azure Active Directory tenant id or domain
 # client_id: change with your Azure Active Directory Application Client ID
 # client_secret: change with your Azure Active Directory Application Secret
+# Implemented as Azure Function & Requests Lib: https://github.com/krassykirov/azure_function_msgraph_query/blob/master/get_msgraph_data_odata_nextLink/__init__.py
 
 async def get_o365_user_emails():
 
