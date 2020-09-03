@@ -1,10 +1,10 @@
 import json,asyncio,time
 from aiohttp import ClientSession
 
-# Fetch User Emails: 'Sender', 'EmailAddress', 'Subject','ReceivedDateTime'
-# tenant: change with your Azure Active Directory tenant id or domain
-# client_id: change with your Azure Active Directory Application Client ID
-# client_secret: change with your Azure Active Directory Application Secret
+# Fetch User Emails: 'Sender', 'EmailAddress', 'Subject', 'ReceivedDateTime' 
+# tenant: your Azure Active Directory tenant id or domain name
+# client_id: your Azure Active Directory Application Client ID
+# client_secret: your Azure Active Directory Application Secret
 
 async def get_o365_user_emails():
 
