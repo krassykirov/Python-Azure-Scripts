@@ -1,3 +1,5 @@
+# Create User with Graph
+
 from azure.graphrbac import GraphRbacManagementClient
 from azure.common.credentials import ServicePrincipalCredentials
 from azure.graphrbac.models import UserCreateParameters, PasswordProfile
