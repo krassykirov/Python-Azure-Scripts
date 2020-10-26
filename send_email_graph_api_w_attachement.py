@@ -1,3 +1,6 @@
+""" Send Email with attachement using Client Credentials flow """
+""" Need to change client_id, client_secret, User and TENANT """ 
+
 from msrestazure.azure_active_directory import AADTokenCredentials
 import adal,requests,os,base64
 
@@ -12,7 +15,7 @@ context = adal.AuthenticationContext(authority_uri, api_version=None)
 mgmt_token = context.acquire_token_with_client_credentials(resource_uri, client_id, client_secret)
 credentials = AADTokenCredentials(mgmt_token, client_id)
 token = credentials.token['access_token']
-uri = "https://graph.microsoft.com/beta/users/{USER}@{TENANAT}.onmicrosoft.com/sendMail"
+uri = "https://graph.microsoft.com/beta/users/{USER}@{TENANT}.onmicrosoft.com/sendMail"
 headers = {'Authorization': 'Bearer {}'.format(token)}
 image = open('my.png', 'rb')
 image_read = image.read()
